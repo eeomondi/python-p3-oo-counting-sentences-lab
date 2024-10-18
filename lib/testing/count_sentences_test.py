@@ -4,8 +4,16 @@ from count_sentences import MyString
 
 import io
 import sys
+import pytest
 
 class TestMyString:
+    def test_value_string(self):
+        captured_out = io.StringIO()
+        sys.stdout = captured_out
+        string = MyString()
+        string.value = 123 #should trigger print
+        sys.stdout = sys.__stdout__
+        assert(captured_out.getvalue() == "The value must be a string.\n")
     '''MyString in count_sentences.py'''
 
     def test_is_class(self):
